@@ -7,7 +7,8 @@ class UserSerializer(serializers.ModelSerializer):
     """Serializer for User model"""
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
-    currently_issued_books = serializers.IntegerField(read_only=True)
+    currently_issued_books = serializers.SerializerMethodField()
+
     can_issue_more_books = serializers.BooleanField(read_only=True)
     
     class Meta:
@@ -17,6 +18,11 @@ class UserSerializer(serializers.ModelSerializer):
                   'profile_picture', 'is_active_member', 'max_books_allowed',
                   'currently_issued_books', 'can_issue_more_books', 'created_at']
         read_only_fields = ['id', 'created_at']
+    def get_currently_issued_books(self, obj):
+        return IssueRecord.objects.filter(
+            user=obj,
+            status='issued'
+        ).count()
     
     def validate(self, attrs):
         if attrs.get('password') != attrs.get('password2'):

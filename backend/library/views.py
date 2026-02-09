@@ -34,7 +34,8 @@ class UserViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['get'])
     def me(self, request):
         """Get current user profile"""
-        serializer = UserProfileSerializer(request.user)
+        serializer = UserSerializer(request.user)
+
         return Response(serializer.data)
     
     @action(detail=False, methods=['put'])
