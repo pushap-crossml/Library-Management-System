@@ -173,3 +173,5 @@ export const usersAPI = {
   update: (id: number, data: any) => api.put(`/users/${id}/`, data),
   delete: (id: number) => api.delete(`/users/${id}/`),
 };
+
+

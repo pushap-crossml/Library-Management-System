@@ -164,7 +164,7 @@ export default function DashboardPage() {
         </header>
 
         <main className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 ">
             <StatCard title="Total Books" value={stats?.total_books || 0} icon={BookOpen} color="border-blue-600" />
             <StatCard title="Total Members" value={stats?.total_members || 0} icon={Users} color="border-green-600" />
             <StatCard title="Books Issued" value={stats?.books_issued || 0} icon={BookMarked} color="border-purple-600" />
